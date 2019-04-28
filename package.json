@@ -1,4 +1,5 @@
 {
+  "version": "0.0.1",
   "private": true,
   "scripts": {
     "start": "PORT=7457 umi dev",
@@ -9,6 +10,8 @@
   },
   "dependencies": {
     "antd": "^3.15.0",
+    "antd-pro-merge-less": "^1.0.0",
+    "antd-theme-webpack-plugin": "^1.2.0",
     "dva": "^2.5.0-beta.2",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",

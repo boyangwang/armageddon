@@ -10,7 +10,7 @@ import Repo from '@/components/Armageddon/repo';
 import * as u from '@/utils/utils';
 import * as _ from 'lodash';
 
-import styles from './index.css';
+import styles from './index.less';
 
 const timeAgo = require('time-ago');
 

@@ -2,11 +2,13 @@ import { stringify } from 'qs';
 import request from '@/utils/request';
 import * as u from '@/utils/utils';
 
-export async function getArmageddon() {
-  return request('http://localhost:4200/graphql', {
-    method: 'POST'
+const prefix = '/v1/armageddon'
+
+export async function getArmageddon(params) {
+  return request(`${prefix}/?${stringify(params)}`, {
+    method: 'GET'
   }).catch((err) => {
-    u.log("Failed: getArmageddon graphql", err);
+    u.log("Failed: getArmageddon", err);
     return {
       data: [],
       loading: false,
@@ -17,13 +19,13 @@ export async function getArmageddon() {
 }
 
 export async function reviewCommit(reviewRepoName, commits) {
-  request('http://localhost:4200/graphql/review', {
+  request(`${prefix}/review`, {
     method: 'POST',
     body: {
       reviewRepoName, reviewCommits: commits
     }
   }).catch((err) => {
-    u.log("Failed: reviewCommit graphql", err);
+    u.log("Failed: reviewCommit", err);
     return {
       data: [],
       loading: false,

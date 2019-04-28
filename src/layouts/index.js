@@ -1,14 +1,13 @@
 import { Typography } from 'antd';
-
-import styles from './index.css';
+import { Fragment } from 'react';
 
 function BasicLayout(props) {
   return (
-    <div className={styles.normal}>
+    <Fragment>
       <Typography.Title>Armageddon</Typography.Title>
       <Typography.Text>Cutoff 6am. Showing list of </Typography.Text>
       {props.children}
-    </div>
+    </Fragment>
   );
 }
 

@@ -65,7 +65,7 @@ const cachedSave = (response, hashcode) => {
  */
 export default function request(url, option) {
   const options = {
-    expirys: isAntdPro(),
+    expirys: false,
     ...option,
   };
   /**

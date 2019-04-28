@@ -1,5 +1,4 @@
 import moment from 'moment';
-import React from 'react';
 import { parse, stringify } from 'qs';
 
 const packageJson = require('../../package.json');
@@ -153,8 +152,6 @@ export const log = (...args) => {
 };
 
 export const logTitle = (...args) => {
-  window.ChatChat = window.ChatChat || {};
-  window.ChatChat.VERSION = packageJson.version;
   console.info(`%cArmageddon ${packageJson.version}%c`, 'font-size: 20px; color: #4E4E4E; font-weight: bold; background-color: #4376B0', '', ...args);
 };
 

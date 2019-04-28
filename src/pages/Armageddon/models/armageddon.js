@@ -38,7 +38,7 @@ export default {
     saveArmageddon(state, action) {
       return {
         ...state,
-        repos: action.payload,
+        repos: action.payload.data,
       };
     },
     reviewCommit(state, action) {

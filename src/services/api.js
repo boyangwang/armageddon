@@ -5,7 +5,7 @@ import * as u from '@/utils/utils';
 const prefix = '/v1/armageddon'
 
 export async function getArmageddon(params) {
-  return request(`${prefix}/?${stringify(params)}`, {
+  return request(`${prefix}/data?${stringify(params)}`, {
     method: 'GET'
   }).catch((err) => {
     u.log("Failed: getArmageddon", err);

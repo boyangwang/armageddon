@@ -1,9 +1,12 @@
+import { Typography } from 'antd';
+
 import styles from './index.css';
 
 function BasicLayout(props) {
   return (
     <div className={styles.normal}>
-      <h1 className={styles.title}>Yay! Welcome to umi!</h1>
+      <Typography.Title>Armageddon</Typography.Title>
+      <Typography.Text>Cutoff 6am. Showing list of </Typography.Text>
       {props.children}
     </div>
   );

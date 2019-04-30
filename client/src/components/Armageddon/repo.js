@@ -99,7 +99,7 @@ class UpdateForm extends PureComponent {
           } else {
             handleUpdate(formVals);
           }
-        }
+        },
       );
     });
   };
@@ -129,7 +129,7 @@ class UpdateForm extends PureComponent {
             <Select style={{ width: '100%' }}>
               <Option value="0">表一</Option>
               <Option value="1">表二</Option>
-            </Select>
+            </Select>,
           )}
         </FormItem>,
         <FormItem key="template" {...this.formLayout} label="规则模板">
@@ -139,7 +139,7 @@ class UpdateForm extends PureComponent {
             <Select style={{ width: '100%' }}>
               <Option value="0">规则模板一</Option>
               <Option value="1">规则模板二</Option>
-            </Select>
+            </Select>,
           )}
         </FormItem>,
         <FormItem key="type" {...this.formLayout} label="规则类型">
@@ -149,7 +149,7 @@ class UpdateForm extends PureComponent {
             <RadioGroup>
               <Radio value="0">强</Radio>
               <Radio value="1">弱</Radio>
-            </RadioGroup>
+            </RadioGroup>,
           )}
         </FormItem>,
       ];
@@ -165,7 +165,7 @@ class UpdateForm extends PureComponent {
               showTime
               format="YYYY-MM-DD HH:mm:ss"
               placeholder="选择开始时间"
-            />
+            />,
           )}
         </FormItem>,
         <FormItem key="frequency" {...this.formLayout} label="调度周期">
@@ -175,7 +175,7 @@ class UpdateForm extends PureComponent {
             <Select style={{ width: '100%' }}>
               <Option value="month">月</Option>
               <Option value="week">周</Option>
-            </Select>
+            </Select>,
           )}
         </FormItem>,
       ];
@@ -272,10 +272,9 @@ class Repo extends PureComponent {
     selectedRows: [],
   };
 
-  componentDidMount() {
-  }
-  
-  onReviewedChange = (commits) => {
+  componentDidMount() {}
+
+  onReviewedChange = commits => {
     const { dispatch, repo } = this.props;
     dispatch({
       type: 'armageddon/review',
@@ -284,13 +283,13 @@ class Repo extends PureComponent {
         commits,
       },
     });
-  }
+  };
 
-  columns = (repo) => ([
+  columns = repo => [
     {
       title: 'Commit',
       dataIndex: 'hash',
-      render: h => h.substring(0, 8)
+      render: h => h.substring(0, 8),
     },
     {
       title: 'Author',
@@ -316,9 +315,11 @@ class Repo extends PureComponent {
     {
       title: 'Reviewed',
       dataIndex: 'reviewed',
-      render: (r, commit) => <Checkbox checked={r} onChange={() => this.onReviewedChange([commit])} />,
+      render: (r, commit) => (
+        <Checkbox checked={r} onChange={() => this.onReviewedChange([commit])} />
+      ),
     },
-  ])
+  ];
 
   handleStandardTableChange = (pagination, filtersArg, sorter) => {
     const { formValues } = this.state;
@@ -472,7 +473,7 @@ class Repo extends PureComponent {
                 <Select placeholder="请选择" style={{ width: '100%' }}>
                   <Option value="0">关闭</Option>
                   <Option value="1">运行中</Option>
-                </Select>
+                </Select>,
               )}
             </FormItem>
           </Col>
@@ -512,7 +513,7 @@ class Repo extends PureComponent {
                 <Select placeholder="请选择" style={{ width: '100%' }}>
                   <Option value="0">关闭</Option>
                   <Option value="1">运行中</Option>
-                </Select>
+                </Select>,
               )}
             </FormItem>
           </Col>
@@ -526,7 +527,7 @@ class Repo extends PureComponent {
           <Col md={8} sm={24}>
             <FormItem label="更新日期">
               {getFieldDecorator('date')(
-                <DatePicker style={{ width: '100%' }} placeholder="请输入更新日期" />
+                <DatePicker style={{ width: '100%' }} placeholder="请输入更新日期" />,
               )}
             </FormItem>
           </Col>
@@ -536,7 +537,7 @@ class Repo extends PureComponent {
                 <Select placeholder="请选择" style={{ width: '100%' }}>
                   <Option value="0">关闭</Option>
                   <Option value="1">运行中</Option>
-                </Select>
+                </Select>,
               )}
             </FormItem>
           </Col>
@@ -546,7 +547,7 @@ class Repo extends PureComponent {
                 <Select placeholder="请选择" style={{ width: '100%' }}>
                   <Option value="0">关闭</Option>
                   <Option value="1">运行中</Option>
-                </Select>
+                </Select>,
               )}
             </FormItem>
           </Col>
@@ -574,10 +575,7 @@ class Repo extends PureComponent {
   }
 
   render() {
-    const {
-      loading,
-      repo,
-    } = this.props;
+    const { loading, repo } = this.props;
     const { selectedRows, modalVisible, updateModalVisible, stepFormValues } = this.state;
 
     const parentMethods = {
@@ -606,11 +604,14 @@ class Repo extends PureComponent {
           <StandardTable
             selectedRows={selectedRows}
             loading={loading}
-            data={{ list: repo.commits, pagination: {
-              showSizeChanger: false,
-              showQuickJumper: false,
-              pageSize: 60,
-            }}}
+            data={{
+              list: repo.commits,
+              pagination: {
+                showSizeChanger: false,
+                showQuickJumper: false,
+                pageSize: 60,
+              },
+            }}
             columns={this.columns(repo)}
             onSelectRow={this.handleSelectRows}
             onChange={this.handleStandardTableChange}

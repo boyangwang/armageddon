@@ -23,13 +23,13 @@ export default {
     *review({ payload }, { call, put }) {
       const { repo, commits } = payload;
       const response = yield call(api.reviewCommit, repo.repoName, commits);
-      u.log('review', response)
+      u.log('review', response);
       yield put({
         type: 'reviewCommit',
         payload: {
           repo,
           commits,
-        }
+        },
       });
     },
   },
@@ -56,6 +56,6 @@ export default {
       });
       newRepo.commits = newCommits;
       return newState;
-    }
+    },
   },
 };

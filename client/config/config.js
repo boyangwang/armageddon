@@ -5,25 +5,28 @@ export default {
   treeShaking: true,
   plugins: [
     // ref: https://umijs.org/plugin/umi-plugin-react.html
-    ['umi-plugin-react', {
-      antd: true,
-      dva: {
-        hmr: true,
+    [
+      'umi-plugin-react',
+      {
+        antd: true,
+        dva: {
+          hmr: true,
+        },
+        dynamicImport: false,
+        title: 'matrix-armageddon',
+        dll: false,
+
+        routes: {
+          exclude: [
+            /models\//,
+            /services\//,
+            /model\.(t|j)sx?$/,
+            /service\.(t|j)sx?$/,
+            /components\//,
+          ],
+        },
       },
-      dynamicImport: false,
-      title: 'matrix-armageddon',
-      dll: false,
-      
-      routes: {
-        exclude: [
-          /models\//,
-          /services\//,
-          /model\.(t|j)sx?$/,
-          /service\.(t|j)sx?$/,
-          /components\//,
-        ],
-      },
-    }],
+    ],
   ],
   lessLoaderOptions: {
     javascriptEnabled: true,
@@ -58,4 +61,4 @@ export default {
       changeOrigin: true,
     },
   },
-}
+};

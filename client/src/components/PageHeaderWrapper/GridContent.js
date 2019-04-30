@@ -10,5 +10,4 @@ class GridContent extends PureComponent {
   }
 }
 
-export default connect(() => ({
-}))(GridContent);
+export default connect(() => ({}))(GridContent);

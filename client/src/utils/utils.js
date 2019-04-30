@@ -108,7 +108,7 @@ function getRenderArr(routes) {
  */
 export function getRoutes(path, routerData) {
   let routes = Object.keys(routerData).filter(
-    routePath => routePath.indexOf(path) === 0 && routePath !== path
+    routePath => routePath.indexOf(path) === 0 && routePath !== path,
   );
   // Replace path to '' eg. path='user' /user/name => name
   routes = routes.map(item => item.replace(path, ''));
@@ -148,13 +148,27 @@ export function isUrl(path) {
 
 /* eslint-disable no-console */
 export const log = (...args) => {
-  console.info(`%cArmageddon%c ${new Date().toISOString()} | `, 'color: #4E4E4E; font-weight: bold; background-color: #4376B0', '', ...args);
+  console.info(
+    `%cArmageddon%c ${new Date().toISOString()} | `,
+    'color: #4E4E4E; font-weight: bold; background-color: #4376B0',
+    '',
+    ...args,
+  );
 };
 
 export const logTitle = (...args) => {
-  console.info(`%cArmageddon ${packageJson.version}%c`, 'font-size: 20px; color: #4E4E4E; font-weight: bold; background-color: #4376B0', '', ...args);
+  console.info(
+    `%cArmageddon ${packageJson.version}%c`,
+    'font-size: 20px; color: #4E4E4E; font-weight: bold; background-color: #4376B0',
+    '',
+    ...args,
+  );
 };
 
 logTitle();
 
-export const timestampToStr = (ts) => (new Date(+ts)).toString().substring(0, 33).replace('GMT', '');
+export const timestampToStr = ts =>
+  new Date(+ts)
+    .toString()
+    .substring(0, 33)
+    .replace('GMT', '');

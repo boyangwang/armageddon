@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'dva';
-import {
-  Card,
-  Tabs,
-  Badge,
-} from 'antd';
+import { Card, Tabs, Badge } from 'antd';
 import GridContent from '@/components/PageHeaderWrapper/GridContent';
 import Repo from '@/components/Armageddon/repo';
 import * as u from '@/utils/utils';
@@ -66,13 +62,18 @@ class Armageddon extends Component {
       <GridContent>
         <Card className={styles.armageddon} loading={loading}>
           <Tabs onChange={this.handleTabChange}>
-            {repos.map((repo) => (
+            {repos.map(repo => (
               <TabPane
                 key={repo.repoName}
                 tab={
                   <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                    <h3 style={{ marginBottom: '0' }}>{repo.repoName} {repo.commits.find(c => !c.reviewed) && <Badge status="processing" />}</h3>
-                    <span className={styles.lastModified}>Pushed: {timeAgo.ago(+_.get(repo, 'commits[0].timestamp', 0))}</span>
+                    <h3 style={{ marginBottom: '0' }}>
+                      {repo.repoName}{' '}
+                      {repo.commits.find(c => !c.reviewed) && <Badge status="processing" />}
+                    </h3>
+                    <span className={styles.lastModified}>
+                      Pushed: {timeAgo.ago(+_.get(repo, 'commits[0].timestamp', 0))}
+                    </span>
                     {/* <span className={styles.lastModified}>
                       {u.timestampToStr(_.get(repo, 'commits[0].timestamp', 0)).substring(16)}
                     </span>

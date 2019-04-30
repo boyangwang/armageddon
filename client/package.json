@@ -4,9 +4,7 @@
   "scripts": {
     "start": "PORT=7457 umi dev",
     "build": "umi build",
-    "test": "umi test",
-    "lint": "eslint --ext .js src mock tests",
-    "precommit": "lint-staged"
+    "lint": "eslint --fix --ext .js,.jsx config mock scripts src && node ./scripts/prettier.js"
   },
   "dependencies": {
     "antd": "^3.15.0",
@@ -16,6 +14,11 @@
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
     "time-ago": "^0.2.1"
+  },
+  "husky": {
+    "hooks": {
+      "pre-push": "yarn lint && (git commit -am 'lint' || true) && yarn version --patch && git push --no-verify"
+    }
   },
   "devDependencies": {
     "babel-eslint": "^9.0.0",
@@ -30,14 +33,5 @@
     "react-test-renderer": "^16.7.0",
     "umi": "^2.6.3",
     "umi-plugin-react": "^1.6.0"
-  },
-  "lint-staged": {
-    "*.{js,jsx}": [
-      "eslint --fix",
-      "git add"
-    ]
-  },
-  "engines": {
-    "node": ">=8.0.0"
   }
 }

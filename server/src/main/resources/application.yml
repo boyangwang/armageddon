@@ -1,0 +1,20 @@
+
+server:
+  port: 7458
+
+spring:
+  application:
+    name: armageddon-server
+  profiles:
+    active: default
+  datasource:
+    url: jdbc:mysql://localhost:3306/armageddon?setUnicode=true&characterEncoding=utf8
+    username: root
+    password: password
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+      base-path: /actuator

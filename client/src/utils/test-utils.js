@@ -1,27 +1,4 @@
-# Armageddon
-
-## armageddon-client
-
-Display repos in tabs
-
-Branches as cards
-
-Commits as list items and paginated
-
-## armageddon-server
-
-Extract out remote connectors for reuse with Github, Bitbucket, Gitlab, even local repo
-
-Get list of interested repo
-
-Get list of branches
-
-Get list of commits in the range
-
-Return a nested structure
-
-```json
-{
+export const data = {
   "status": "success",
   "data": [
     {
@@ -97,5 +74,33 @@ Return a nested structure
       ]
     }
   ]
-}
-```
+};
+
+export const minimalData = {
+  "status": "success",
+  "data": [
+    {
+      "repoName": "test",
+      "remotes": [
+        {
+          "remoteName": "origin",
+          "url": "git@bitbucket.org:test/test.git"
+        }
+      ],
+      "branches": [
+        {
+          "branchName": "test-branch",
+          "commits": [
+            {
+              "hash": "testhash9603a3ca6e6c8b486cbaff759975cf50",
+              "timestamp": "1545032981000",
+              "reviewed": false,
+              "author": "test author",
+              "message": "test message"
+            },
+          ],
+        },
+      ]
+    }
+  ]
+};

@@ -54,7 +54,7 @@ export function getTimeDistance(type) {
 
 export function getPlainNode(nodeList, parentPath = '') {
   const arr = [];
-  nodeList.forEach((node) => {
+  nodeList.forEach(node => {
     const item = node;
     item.path = `${parentPath}/${item.path || ''}`.replace(/\/+/g, '/');
     item.exact = true;
@@ -90,9 +90,9 @@ function getRenderArr(routes) {
   renderArr.push(routes[0]);
   for (let i = 1; i < routes.length; i += 1) {
     // 去重
-    renderArr = renderArr.filter((item) => getRelation(item, routes[i]) !== 1);
+    renderArr = renderArr.filter(item => getRelation(item, routes[i]) !== 1);
     // 是否包含
-    const isAdd = renderArr.every((item) => getRelation(item, routes[i]) === 3);
+    const isAdd = renderArr.every(item => getRelation(item, routes[i]) === 3);
     if (isAdd) {
       renderArr.push(routes[i]);
     }
@@ -108,15 +108,15 @@ function getRenderArr(routes) {
  */
 export function getRoutes(path, routerData) {
   let routes = Object.keys(routerData).filter(
-    (routePath) => routePath.indexOf(path) === 0 && routePath !== path,
+    routePath => routePath.indexOf(path) === 0 && routePath !== path
   );
   // Replace path to '' eg. path='user' /user/name => name
-  routes = routes.map((item) => item.replace(path, ''));
+  routes = routes.map(item => item.replace(path, ''));
   // Get the route to be rendered to remove the deep rendering
   const renderArr = getRenderArr(routes);
   // Conversion and stitching parameters
-  const renderRoutes = renderArr.map((item) => {
-    const exact = !routes.some((route) => route !== item && getRelation(route, item) === 1);
+  const renderRoutes = renderArr.map(item => {
+    const exact = !routes.some(route => route !== item && getRelation(route, item) === 1);
     return {
       exact,
       ...routerData[`${path}${item}`],
@@ -152,7 +152,7 @@ export const log = (...args) => {
     `%cArmageddon%c ${new Date().toISOString()} | `,
     'color: #4E4E4E; font-weight: bold; background-color: #4376B0',
     '',
-    ...args,
+    ...args
   );
 };
 
@@ -161,24 +161,28 @@ export const logTitle = (...args) => {
     `%cArmageddon ${packageJson.version}%c`,
     'font-size: 20px; color: #4E4E4E; font-weight: bold; background-color: #4376B0',
     '',
-    ...args,
+    ...args
   );
 };
 
 logTitle();
 
-export const timestampToStrElements = (ts) => {
+export const timestampToStrElements = ts => {
   return new Date(+ts)
     .toString()
     .substring(0, 33)
-    .replace('GMT', '').split(' ');
-}
+    .replace('GMT', '')
+    .split(' ');
+};
 
-export const timestampToStr = (ts) => {
+export const timestampToStr = ts => {
   const elements = new Date(+ts)
     .toString()
     .substring(0, 33)
-    .replace('GMT', '').split(' ');
-  
-  return `${elements[4]} ${elements[0]} | ${[elements[3], elements[1], elements[2]].join(' ')} | ${elements[5]}`;
+    .replace('GMT', '')
+    .split(' ');
+
+  return `${elements[4]} ${elements[0]} | ${[elements[3], elements[1], elements[2]].join(' ')} | ${
+    elements[5]
+  }`;
 };

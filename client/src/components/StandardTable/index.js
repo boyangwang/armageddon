@@ -4,7 +4,7 @@ import styles from './index.less';
 
 function initTotalList(columns) {
   const totalList = [];
-  columns.forEach((column) => {
+  columns.forEach(column => {
     if (column.needTotal) {
       totalList.push({ ...column, total: 0 });
     }
@@ -38,7 +38,7 @@ class StandardTable extends PureComponent {
 
   handleRowSelectChange = (selectedRowKeys, selectedRows) => {
     let { needTotalList } = this.state;
-    needTotalList = needTotalList.map((item) => ({
+    needTotalList = needTotalList.map(item => ({
       ...item,
       total: selectedRows.reduce((sum, val) => sum + parseFloat(val[item.dataIndex], 10), 0),
     }));
@@ -73,7 +73,7 @@ class StandardTable extends PureComponent {
     const rowSelection = {
       selectedRowKeys,
       onChange: this.handleRowSelectChange,
-      getCheckboxProps: (record) => ({
+      getCheckboxProps: record => ({
         disabled: record.disabled,
       }),
     };

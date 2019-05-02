@@ -21,7 +21,7 @@ const codeMessage = {
   504: '网关超时。',
 };
 
-const checkStatus = (response) => {
+const checkStatus = response => {
   if (response.status >= 200 && response.status < 300) {
     return response;
   }
@@ -47,7 +47,7 @@ const cachedSave = (response, hashcode) => {
     response
       .clone()
       .text()
-      .then((content) => {
+      .then(content => {
         sessionStorage.setItem(hashcode, content);
         sessionStorage.setItem(`${hashcode}:timestamp`, Date.now());
       });
@@ -119,8 +119,8 @@ export default function request(url, option) {
   }
   return fetch(url, newOptions)
     .then(checkStatus)
-    .then((response) => cachedSave(response, hashcode))
-    .then((response) => {
+    .then(response => cachedSave(response, hashcode))
+    .then(response => {
       // DELETE and 204 do not return data by default
       // using .json will report an error.
       if (newOptions.method === 'DELETE' || response.status === 204) {
@@ -128,7 +128,7 @@ export default function request(url, option) {
       }
       return response.json();
     })
-    .catch((e) => {
+    .catch(e => {
       const status = e.name;
       if (status === 401) {
         // @HACK

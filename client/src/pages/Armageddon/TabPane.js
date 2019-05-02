@@ -4,11 +4,7 @@ import React from 'react';
 
 const TabPane = ({ repo, ...props }) => {
   return (
-    <Tabs.TabPane
-      forceRender
-      key={repo.repoName}
-      {...props}
-    >
+    <Tabs.TabPane forceRender key={repo.repoName} {...props}>
       <Repo repo={repo} />
     </Tabs.TabPane>
   );

@@ -1,13 +1,5 @@
 import React, { PureComponent } from 'react';
-import {
-  Typography,
-  Card,
-  Col,
-  Button,
-  Checkbox,
-  Icon,
-  Row,
-} from 'antd';
+import { Typography, Card, Col, Button, Checkbox, Icon, Row } from 'antd';
 import StandardTable from '@/components/StandardTable';
 import * as u from '@/utils/utils';
 import { connect } from 'dva';
@@ -22,7 +14,7 @@ class Branch extends PureComponent {
     selectedRows: [],
   };
 
-  onReviewedChange = (commits) => {
+  onReviewedChange = commits => {
     const { dispatch, repo } = this.props;
     dispatch({
       type: 'armageddon/review',
@@ -33,12 +25,12 @@ class Branch extends PureComponent {
     });
   };
 
-  columns = (repo) => [
+  columns = repo => [
     {
       title: 'Commit',
-      render: (commit) => {
-        return <a href={getCommitLink(repo, commit)}>{commit.hash.substring(0, 8)}</a>
-      }
+      render: commit => {
+        return <a href={getCommitLink(repo, commit)}>{commit.hash.substring(0, 8)}</a>;
+      },
     },
     {
       title: 'Author',
@@ -53,7 +45,7 @@ class Branch extends PureComponent {
       dataIndex: 'timestamp',
       sorter: true,
       align: 'right',
-      render: (ts) => u.timestampToStr(ts),
+      render: ts => u.timestampToStr(ts),
     },
     {
       title: 'Reviewed',
@@ -64,7 +56,7 @@ class Branch extends PureComponent {
     },
   ];
 
-  handleSelectRows = (rows) => {
+  handleSelectRows = rows => {
     this.setState({
       selectedRows: rows,
     });
@@ -76,7 +68,7 @@ class Branch extends PureComponent {
 
     return (
       <Card bordered={false}>
-        <Row type="flex" gutter={24} justify="start" align="middle" style={{ lineHeight: "48px" }}>
+        <Row type="flex" gutter={24} justify="start" align="middle" style={{ lineHeight: '48px' }}>
           <Col>
             <Typography.Title level={4} style={{ marginBottom: 0 }}>
               Branch: {branch.branchName}
@@ -94,7 +86,9 @@ class Branch extends PureComponent {
           </Col>
           <Col>
             <Button onClick={this.cleanSelectedKeys}>
-              <Icon type="stop" />&nbsp;Clear&nbsp;<Typography.Text strong>{selectedRows.length}</Typography.Text>&nbsp;Selected Rows
+              <Icon type="stop" />
+              &nbsp;Clear&nbsp;<Typography.Text strong>{selectedRows.length}</Typography.Text>
+              &nbsp;Selected Rows
             </Button>
           </Col>
         </Row>

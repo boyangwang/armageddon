@@ -45,13 +45,13 @@ export default {
       const { commits, repo } = action.payload;
       const newState = { ...state };
       const newRepo = { ...repo };
-      const repoIdx = newState.repos.findIndex((r) => r.name === newRepo.name);
+      const repoIdx = newState.repos.findIndex(r => r.name === newRepo.name);
       newState.repos[repoIdx] = newRepo;
 
       const newCommits = [...newRepo.commits];
-      commits.forEach((cA) => {
+      commits.forEach(cA => {
         const newCommit = Object.assign({}, cA, { reviewed: !cA.reviewed });
-        const idx = newCommits.findIndex((cB) => cB.hash === cA.hash);
+        const idx = newCommits.findIndex(cB => cB.hash === cA.hash);
         newCommits[idx] = newCommit;
       });
       newRepo.commits = newCommits;

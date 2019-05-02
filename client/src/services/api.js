@@ -7,7 +7,7 @@ const prefix = '/v1/armageddon';
 export async function getArmageddon(params) {
   return request(`${prefix}/data?${stringify(params)}`, {
     method: 'GET',
-  }).catch((err) => {
+  }).catch(err => {
     u.log('Failed: getArmageddon', err);
     return {
       data: [],
@@ -25,7 +25,7 @@ export async function reviewCommit(reviewRepoName, commits) {
       reviewRepoName,
       reviewCommits: commits,
     },
-  }).catch((err) => {
+  }).catch(err => {
     u.log('Failed: reviewCommit', err);
     return {
       data: [],

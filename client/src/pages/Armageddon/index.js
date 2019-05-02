@@ -36,12 +36,8 @@ class Armageddon extends Component {
     return (
       <Card className={styles.armageddon} loading={loading}>
         <Tabs>
-          {armageddon.repos.map((repo) => (
-            <TabPane
-              repo={repo}
-              key={repo.repoName}
-              tab={<TabPaneLabel repo={repo} />}
-            />
+          {armageddon.repos.map(repo => (
+            <TabPane repo={repo} key={repo.repoName} tab={<TabPaneLabel repo={repo} />} />
           ))}
         </Tabs>
       </Card>

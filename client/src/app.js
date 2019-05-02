@@ -1,4 +1,4 @@
-import { log } from "./utils/utils";
+import { log } from './utils/utils';
 
 export const dva = {
   config: {

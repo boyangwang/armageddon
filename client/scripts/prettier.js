@@ -22,7 +22,7 @@ if (!files.length) {
   return;
 }
 
-files.forEach((file) => {
+files.forEach(file => {
   // eslint-disable-next-line no-console
   console.info(`WIP ${file}`);
   const options = prettier.resolveConfig.sync(file, {

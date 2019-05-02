@@ -7,16 +7,15 @@ import Branch from './branch';
   loading: loading.effects['armageddon/fetch'],
 }))
 class Repo extends PureComponent {
-
   render() {
     const { repo } = this.props;
     const branches = R.propOr([], 'branches', repo);
-    
+
     return (
       <Fragment>
-        {branches.map((b) => 
+        {branches.map(b => (
           <Branch branch={b} repo={repo} key={b.branchName} />
-        )}
+        ))}
       </Fragment>
     );
   }

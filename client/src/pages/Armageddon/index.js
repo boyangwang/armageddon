@@ -1,14 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'dva';
 import { Card, Tabs } from 'antd';
-import GridContent from '@/components/PageHeaderWrapper/GridContent';
-import Repo from '@/components/Armageddon/repo';
+import * as R from 'ramda';
+import TabPane from './TabPane';
 import * as u from '@/utils/utils';
-import R from 'ramda';
+import TabPaneLabel from './TabPaneLabel';
 
 import styles from './index.less';
-
-const { TabPane } = Tabs;
 
 @connect(({ loading, armageddon }) => ({
   loading: loading.effects['armageddon/fetch'],
@@ -19,10 +17,6 @@ class Armageddon extends Component {
     super(props);
     u.log('In armageddon constructor');
   }
-
-  state = {
-    tabKey: '',
-  };
 
   componentDidMount() {
     const { dispatch } = this.props;
@@ -37,31 +31,21 @@ class Armageddon extends Component {
     cancelAnimationFrame(this.reqRef);
   }
 
-  handleTabChange = key => {
-    this.setState({
-      tabKey: key,
-    });
-  };
-
   render() {
     const { loading, armageddon } = this.props;
 
-    const repos = R.propOr([], 'data', armageddon);
     return (
-      <GridContent>
-        <Card className={styles.armageddon} loading={loading}>
-          <Tabs onChange={this.handleTabChange}>
-            {repos.map(repo => (
-              <TabPane
-                key={repo.repoName}
-                
-              >
-                <Repo repo={repo} />
-              </TabPane>
-            ))}
-          </Tabs>
-        </Card>
-      </GridContent>
+      <Card className={styles.armageddon} loading={loading}>
+        <Tabs>
+          {armageddon.repos.map(repo => (
+            <TabPane
+              repo={repo}
+              key={repo.repoName}
+              tab={<TabPaneLabel repo={repo} />}
+            />
+          ))}
+        </Tabs>
+      </Card>
     );
   }
 }

@@ -61,4 +61,7 @@ export default {
       changeOrigin: true,
     },
   },
+  theme: {
+    "primary-color": "#3cbd72",
+  },
 };

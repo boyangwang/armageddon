@@ -13,7 +13,7 @@ class Repo extends PureComponent {
 
     return (
       <Fragment>
-        {branches.map(b => (
+        {branches.map((b) => (
           <Branch branch={b} repo={repo} key={b.branchName} />
         ))}
       </Fragment>

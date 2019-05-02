@@ -7,7 +7,7 @@ import { urlToList } from '../_utils/pathTools';
 export const getBreadcrumb = (breadcrumbNameMap, url) => {
   let breadcrumb = breadcrumbNameMap[url];
   if (!breadcrumb) {
-    Object.keys(breadcrumbNameMap).forEach(item => {
+    Object.keys(breadcrumbNameMap).forEach((item) => {
       if (pathToRegexp(item).test(url)) {
         breadcrumb = breadcrumbNameMap[item];
       }
@@ -58,7 +58,7 @@ export default class BreadcrumbView extends PureComponent {
     const { breadcrumbList, breadcrumbSeparator, itemRender, linkElement = 'a' } = this.props;
     return (
       <Breadcrumb className={styles.breadcrumb} separator={breadcrumbSeparator}>
-        {breadcrumbList.map(item => {
+        {breadcrumbList.map((item) => {
           const title = itemRender ? itemRender(item) : item.title;
           return (
             <Breadcrumb.Item key={item.title}>
@@ -137,7 +137,7 @@ export default class BreadcrumbView extends PureComponent {
       return (
         <Breadcrumb
           className={styles.breadcrumb}
-          routes={routes.filter(route => route.breadcrumbName)}
+          routes={routes.filter((route) => route.breadcrumbName)}
           params={params}
           itemRender={this.itemRender}
           separator={breadcrumbSeparator}

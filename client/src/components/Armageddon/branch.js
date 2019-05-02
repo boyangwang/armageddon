@@ -14,7 +14,7 @@ class Branch extends PureComponent {
     selectedRows: [],
   };
 
-  onReviewedChange = commits => {
+  onReviewedChange = (commits) => {
     const { dispatch, repo } = this.props;
     dispatch({
       type: 'armageddon/review',
@@ -25,10 +25,10 @@ class Branch extends PureComponent {
     });
   };
 
-  columns = repo => [
+  columns = (repo) => [
     {
       title: 'Commit',
-      render: commit => {
+      render: (commit) => {
         return <a href={getCommitLink(repo, commit)}>{commit.hash.substring(0, 8)}</a>;
       },
     },
@@ -45,7 +45,7 @@ class Branch extends PureComponent {
       dataIndex: 'timestamp',
       sorter: true,
       align: 'right',
-      render: ts => u.timestampToStr(ts),
+      render: (ts) => u.timestampToStr(ts),
     },
     {
       title: 'Reviewed',
@@ -56,7 +56,7 @@ class Branch extends PureComponent {
     },
   ];
 
-  handleSelectRows = rows => {
+  handleSelectRows = (rows) => {
     this.setState({
       selectedRows: rows,
     });

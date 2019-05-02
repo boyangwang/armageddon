@@ -6,7 +6,7 @@ import { timestampToStr } from './utils';
 const GITLAB_HUIYIN_REGEX = /^git@gitlab\.intranet\.huiyin\.com:(.+)\/(.+)\.git$/;
 
 export function isAnyCommitUnreviewedInBranch(branch) {
-  return R.any(c => c.reviewed === false, R.pathOr([], ['commits'], branch));
+  return R.any((c) => c.reviewed === false, R.pathOr([], ['commits'], branch));
 }
 
 export function isAnyCommitUnreviewed(repo) {

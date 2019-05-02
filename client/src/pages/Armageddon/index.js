@@ -4,7 +4,7 @@ import { Card, Tabs } from 'antd';
 import GridContent from '@/components/PageHeaderWrapper/GridContent';
 import Repo from '@/components/Armageddon/repo';
 import * as u from '@/utils/utils';
-import * as _ from 'lodash';
+import R from 'ramda';
 
 import styles from './index.less';
 
@@ -46,7 +46,7 @@ class Armageddon extends Component {
   render() {
     const { loading, armageddon } = this.props;
 
-    const repos = _.get(armageddon, 'data', []);
+    const repos = R.propOr([], 'data', armageddon);
     return (
       <GridContent>
         <Card className={styles.armageddon} loading={loading}>

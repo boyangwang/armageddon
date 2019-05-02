@@ -5,7 +5,7 @@ import styles from './GridContent.less';
 class GridContent extends PureComponent {
   render() {
     const { children } = this.props;
-    let className = `${styles.main}`;
+    const className = `${styles.main}`;
     return <div className={className}>{children}</div>;
   }
 }

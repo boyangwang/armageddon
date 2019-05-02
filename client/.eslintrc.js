@@ -1,6 +1,6 @@
 module.exports = {
   parser: 'babel-eslint',
-  extends: ['eslint-config-umi', 'airbnb', 'prettier', 'plugin:compat/recommended'],
+  extends: ['eslint-config-umi', 'airbnb', 'prettier'],
   env: {
     browser: true,
     node: true,
@@ -32,6 +32,7 @@ module.exports = {
     'jsx-a11y/no-static-element-interactions': 0,
     'jsx-a11y/anchor-is-valid': 0,
     'linebreak-style': 0,
+    'import/prefer-default-export': 0,
   },
   settings: {
     polyfills: ['fetch', 'promises', 'url'],

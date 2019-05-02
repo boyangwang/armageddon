@@ -1,12 +1,14 @@
 import { Tabs, Badge } from 'antd';
 import Repo from '@/components/Armageddon/repo';
+import React from 'react';
+import R from 'ramda';
 
 import styles from './index.less';
 
 const timeAgo = require('time-ago');
 
 export default function(props) {
-  const { repo } = props.repo;
+  const { repo } = props;
   return (
     <Tabs.TabPane
       key={repo.repoName}
@@ -17,7 +19,7 @@ export default function(props) {
             {repo.commits.find(c => !c.reviewed) && <Badge status="processing" />}
           </h3>
           <span className={styles.lastModified}>
-            Pushed: {timeAgo.ago(+_.get(repo, 'commits[0].timestamp', 0))}
+            Pushed: {timeAgo.ago(+R.propOr(repo, 'commits[0].timestamp', 0))}
           </span>
         </div>
       }

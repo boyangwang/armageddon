@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'dva';
 import { Card, Tabs } from 'antd';
-import * as R from 'ramda';
 import TabPane from './TabPane';
 import * as u from '@/utils/utils';
 import TabPaneLabel from './TabPaneLabel';
@@ -37,7 +36,7 @@ class Armageddon extends Component {
     return (
       <Card className={styles.armageddon} loading={loading}>
         <Tabs>
-          {armageddon.repos.map(repo => (
+          {armageddon.repos.map((repo) => (
             <TabPane
               repo={repo}
               key={repo.repoName}

@@ -9,8 +9,7 @@ const TabPane = ({ repo, ...props }) => {
       key={repo.repoName}
       {...props}
     >
-      {repo.repoName}
-      {/* <Repo repo={repo} /> */}
+      <Repo repo={repo} />
     </Tabs.TabPane>
   );
 };

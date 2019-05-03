@@ -31,6 +31,7 @@ class Branch extends PureComponent {
       render: (commit) => {
         return <a href={getCommitLink(repo, commit)}>{commit.hash.substring(0, 8)}</a>;
       },
+      width: 120,
     },
     {
       title: 'Author',
@@ -43,13 +44,15 @@ class Branch extends PureComponent {
     {
       title: 'Time',
       dataIndex: 'timestamp',
-      sorter: true,
       align: 'right',
+      width: 160,
       render: (ts) => u.timestampToStr(ts),
     },
     {
       title: 'Reviewed',
       dataIndex: 'reviewed',
+      width: 48,
+      align: 'right',
       render: (r, commit) => (
         <Checkbox checked={r} onChange={() => this.onReviewedChange([commit])} />
       ),
@@ -85,7 +88,7 @@ class Branch extends PureComponent {
             </Button>
           </Col>
           <Col>
-            <Button onClick={this.cleanSelectedKeys}>
+            <Button onClick={() => this.handleSelectRows([])}>
               <Icon type="stop" />
               &nbsp;Clear&nbsp;<Typography.Text strong>{selectedRows.length}</Typography.Text>
               &nbsp;Selected Rows

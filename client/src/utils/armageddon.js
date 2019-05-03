@@ -52,3 +52,29 @@ export function findCutoffFromTs(ts) {
       .milliseconds(0)
   );
 }
+
+export function updateOneCommitInState(commit, state) {
+  const updated = R.clone(state);
+
+  updated.repos.forEach((r) => {
+    r.branches.forEach((b) => {
+      b.commits.forEach((c) => {
+        if (c.hash === commit.hash) {
+          Object.assign(c, commit);
+        }
+      });
+    });
+  });
+
+  return updated;
+};
+
+export function updateCommitsInState(commits, state) {
+  let updated = R.clone(state);
+  commits.forEach((c) => {
+    updated = updateOneCommitInState(c, updated);
+  });
+
+  return updated;
+};
+

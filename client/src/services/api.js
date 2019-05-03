@@ -10,27 +10,21 @@ export async function getArmageddon(params) {
   }).catch((err) => {
     u.log('Failed: getArmageddon', err);
     return {
-      data: [],
-      loading: false,
-      stale: false,
       err,
     };
   });
 }
 
-export async function reviewCommit(reviewRepoName, commits) {
-  request(`${prefix}/review`, {
+export async function reviewCommit(reviewRepoName, reviewCommits) {
+  return request(`${prefix}/review`, {
     method: 'POST',
     body: {
       reviewRepoName,
-      reviewCommits: commits,
+      reviewCommits,
     },
   }).catch((err) => {
     u.log('Failed: reviewCommit', err);
     return {
-      data: [],
-      loading: false,
-      stale: false,
       err,
     };
   });

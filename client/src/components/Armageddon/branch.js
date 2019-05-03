@@ -14,16 +14,33 @@ class Branch extends PureComponent {
     selectedRows: [],
   };
 
-  onReviewedChange = (commits) => {
+  onReviewedChange = async (commits) => {
     const { dispatch, repo } = this.props;
-    dispatch({
+
+    const reviewCommits = commits.map((c) => {
+      return {
+        hash: c.hash,
+        reviewed: !c.reviewed,
+        reviewComment: '',
+      };
+    });
+
+    await dispatch({
       type: 'armageddon/review',
       payload: {
         repo,
-        commits,
+        commits: reviewCommits,
       },
     });
   };
+
+  onReviewedChangeForSelectedRows = async (selectedRows) => {
+    const { branch } = this.props;
+
+    const commits = selectedRows.map((hash) => branch.commits.find((c) => c.hash === hash));
+
+    await this.onReviewedChange(commits);
+  }
 
   columns = (repo) => [
     {
@@ -61,7 +78,7 @@ class Branch extends PureComponent {
 
   handleSelectRows = (rows) => {
     this.setState({
-      selectedRows: rows,
+      selectedRows: rows.map((c) => c.hash),
     });
   };
 
@@ -82,9 +99,9 @@ class Branch extends PureComponent {
               icon="fork"
               type="primary"
               disabled={selectedRows.length === 0}
-              onClick={() => this.onReviewedChange(selectedRows)}
+              onClick={() => this.onReviewedChangeForSelectedRows(selectedRows)}
             >
-              Toggle reviewed
+              Toggle Reviewed
             </Button>
           </Col>
           <Col>

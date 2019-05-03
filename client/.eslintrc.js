@@ -27,7 +27,7 @@ module.exports = {
         devDependencies: true,
       },
     ],
-    'no-param-reassign': [2, { "props": false }],
+    'no-param-reassign': [2, { props: false }],
     'jsx-a11y/no-noninteractive-element-interactions': 0,
     'jsx-a11y/click-events-have-key-events': 0,
     'jsx-a11y/no-static-element-interactions': 0,

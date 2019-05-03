@@ -46,7 +46,7 @@ export default {
     },
     reviewCommit(state, action) {
       const { commits } = action.payload;
-      
+
       return updateCommitsInState(commits, state);
     },
   },

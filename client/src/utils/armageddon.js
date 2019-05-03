@@ -67,7 +67,7 @@ export function updateOneCommitInState(commit, state) {
   });
 
   return updated;
-};
+}
 
 export function updateCommitsInState(commits, state) {
   let updated = R.clone(state);
@@ -76,5 +76,4 @@ export function updateCommitsInState(commits, state) {
   });
 
   return updated;
-};
-
+}

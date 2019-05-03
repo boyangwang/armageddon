@@ -40,7 +40,7 @@ class Branch extends PureComponent {
     const commits = selectedRows.map((hash) => branch.commits.find((c) => c.hash === hash));
 
     await this.onReviewedChange(commits);
-  }
+  };
 
   columns = (repo) => [
     {

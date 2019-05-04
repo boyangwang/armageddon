@@ -49,13 +49,11 @@ export function findCutoffMomentFromTs(ts) {
     .minutes(0)
     .seconds(0)
     .milliseconds(0);
-};
+}
 
 export function findCutoffStrFromTs(ts) {
-  return timestampToStr(
-    +findCutoffMomentFromTs(ts)
-  );
-};
+  return timestampToStr(+findCutoffMomentFromTs(ts));
+}
 
 export function updateOneCommitInState(commit, state) {
   const updated = R.clone(state);

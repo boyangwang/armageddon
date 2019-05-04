@@ -12,8 +12,9 @@ export default {
   },
 
   effects: {
-    *fetch(_, { call, put }) {
-      const response = yield call(api.getArmageddon);
+    *fetch({ payload }, { call, put }) {
+      const ts = +payload;
+      const response = yield call(api.getArmageddon, { cutoff: ts });
       u.log('fetch', response);
       yield put({
         type: 'saveArmageddon',

@@ -154,17 +154,17 @@ test('findCutoffFromTs', () => {
   const beijingYesterdayTwentyThree = 1556722800000;
 
   console.info('BASE', timestampToStr(normal)); // 12:07:17 Thu | 2019 May 02 | +0800
-  expect(testee.findCutoffFromTs(normal)).toBe('08:00:00 Wed | 2019 May 01 | +0800');
-  expect(testee.findCutoffFromTs(beijingEight)).toBe('08:00:00 Wed | 2019 May 01 | +0800');
-  expect(testee.findCutoffFromTs(beijingNine)).toBe('08:00:00 Wed | 2019 May 01 | +0800');
-  expect(testee.findCutoffFromTs(beijingSeven)).toBe('08:00:00 Tue | 2019 Apr 30 | +0800');
-  expect(testee.findCutoffFromTs(beijingOne)).toBe('08:00:00 Tue | 2019 Apr 30 | +0800');
-  expect(testee.findCutoffFromTs(beijingZero)).toBe('08:00:00 Tue | 2019 Apr 30 | +0800');
+  expect(testee.findCutoffStrFromTs(normal)).toBe('08:00:00 Tue | 2019 Apr 30 | +0800');
+  expect(testee.findCutoffStrFromTs(beijingEight)).toBe('08:00:00 Tue | 2019 Apr 30 | +0800');
+  expect(testee.findCutoffStrFromTs(beijingNine)).toBe('08:00:00 Tue | 2019 Apr 30 | +0800');
+  expect(testee.findCutoffStrFromTs(beijingSeven)).toBe('08:00:00 Mon | 2019 Apr 29 | +0800');
+  expect(testee.findCutoffStrFromTs(beijingOne)).toBe('08:00:00 Mon | 2019 Apr 29 | +0800');
+  expect(testee.findCutoffStrFromTs(beijingZero)).toBe('08:00:00 Mon | 2019 Apr 29 | +0800');
 
-  expect(testee.findCutoffFromTs(beijingTodayTwentyThree)).toBe(
-    '08:00:00 Wed | 2019 May 01 | +0800'
-  );
-  expect(testee.findCutoffFromTs(beijingYesterdayTwentyThree)).toBe(
+  expect(testee.findCutoffStrFromTs(beijingTodayTwentyThree)).toBe(
     '08:00:00 Tue | 2019 Apr 30 | +0800'
+  );
+  expect(testee.findCutoffStrFromTs(beijingYesterdayTwentyThree)).toBe(
+    '08:00:00 Mon | 2019 Apr 29 | +0800'
   );
 });

@@ -6,6 +6,7 @@ import * as u from '@/utils/utils';
 import TabPaneLabel from './TabPaneLabel';
 
 import styles from './index.less';
+import { findCutoffMomentFromTs } from '@/utils/armageddon';
 
 @connect(({ loading, armageddon }) => ({
   loading: loading.effects['armageddon/fetch'],
@@ -19,15 +20,10 @@ class Armageddon extends Component {
 
   componentDidMount() {
     const { dispatch } = this.props;
-    this.reqRef = requestAnimationFrame(() => {
-      dispatch({
-        type: 'armageddon/fetch',
-      });
+    dispatch({
+      type: 'armageddon/fetch',
+      payload: findCutoffMomentFromTs(Date.now()),
     });
-  }
-
-  componentWillUnmount() {
-    cancelAnimationFrame(this.reqRef);
   }
 
   render() {

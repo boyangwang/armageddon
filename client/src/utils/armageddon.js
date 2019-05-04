@@ -40,18 +40,22 @@ export function getCommitLink(repo, commit) {
   return '#';
 }
 
-export function findCutoffFromTs(ts) {
+export function findCutoffMomentFromTs(ts) {
+  return moment
+    .default(ts)
+    .utc()
+    .subtract(2, 'days')
+    .hours(0)
+    .minutes(0)
+    .seconds(0)
+    .milliseconds(0);
+};
+
+export function findCutoffStrFromTs(ts) {
   return timestampToStr(
-    moment
-      .default(ts)
-      .utc()
-      .subtract(1, 'days')
-      .hours(0)
-      .minutes(0)
-      .seconds(0)
-      .milliseconds(0)
+    +findCutoffMomentFromTs(ts)
   );
-}
+};
 
 export function updateOneCommitInState(commit, state) {
   const updated = R.clone(state);

@@ -3,13 +3,13 @@ import React from 'react';
 import styles from './index.less';
 import PageHeaderWrapper from '@/components/PageHeaderWrapper';
 import { timestampToStr } from '@/utils/utils';
-import { findCutoffFromTs } from '@/utils/armageddon';
+import { findCutoffStrFromTs } from '@/utils/armageddon';
 
 function BasicLayout(props) {
   const { children } = props;
   const now = Date.now();
   const nowStr = timestampToStr(now);
-  const prevStr = findCutoffFromTs(now);
+  const prevStr = findCutoffStrFromTs(now);
 
   return (
     <Layout className="layout">

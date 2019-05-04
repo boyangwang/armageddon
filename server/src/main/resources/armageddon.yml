@@ -1,0 +1,10 @@
+armageddon:
+  githosting:
+    gitlab:
+      baseUrl: http://gitlab.intranet.huiyin.com
+      privateToken: ${GITLAB_PRIVATE_TOKEN:xxxxxxxxxxxxxxxxxx-y}
+      repoNameToRepoIdMap:
+        matrix-manage-new: 347
+  repos:
+    - name: matrix-manage-new
+      url: git@gitlab.intranet.huiyin.com:matrix/matrix-manage-new.git

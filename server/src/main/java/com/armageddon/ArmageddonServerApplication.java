@@ -1,4 +1,4 @@
-package com.armageddon.armageddonserver;
+package com.armageddon;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

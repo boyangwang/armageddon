@@ -1,4 +1,4 @@
-package com.armageddon.armageddonserver;
+package com.armageddon;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -9,10 +9,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class ArmageddonServerApplicationTests {
-
 	@Test
 	public void contextLoads() {
-		Assert.assertEquals(true, true);
+        Assert.assertEquals(1, 1);
 	}
-
 }

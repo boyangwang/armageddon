@@ -82,6 +82,7 @@ public class ArmageddonConfig {
     public static class Repo {
         private String name;
         private String url;
+        private GITHOSTING_TYPES type;
 
         public String getName() {
             return name;
@@ -97,6 +98,14 @@ public class ArmageddonConfig {
 
         public void setUrl(String url) {
             this.url = url;
+        }
+
+        public GITHOSTING_TYPES getType() {
+            return type;
+        }
+
+        public void setType(GITHOSTING_TYPES type) {
+            this.type = type;
         }
     }
 }

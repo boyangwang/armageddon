@@ -3,10 +3,9 @@ package com.armageddon.services;
 import com.armageddon.configs.ArmageddonConfig;
 import com.armageddon.configs.GITHOSTING_TYPES;
 import com.armageddon.connectors.GitlabConnector;
-import com.armageddon.db.CommitReview;
+import com.armageddon.db.Commit;
 import com.armageddon.db.CommitReviewRepository;
 import com.armageddon.models.ArmageddonData;
-import com.armageddon.models.Commit;
 import com.armageddon.models.Repo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -67,13 +66,22 @@ public class ArmageddonService {
     }
 
     public void enrichCommitWithCommitReview(List<Commit> commits) {
-        Iterable<CommitReview> commitReviews = commitReviewRepository.findAllById(commits.stream().map(c -> c.hash)
+        Iterable<Commit> commitReviews = commitReviewRepository.findAllById(commits.stream().map(Commit::getHash)
                 .collect(Collectors.toList()));
-
+        commitReviews.forEach(commitReview -> {
+            Commit commit = commits.stream().filter(c -> c.getHash().equals(commitReview.getHash()))
+                    .findAny()
+                    .orElse(null);
+            if (commit == null) {
+                return;
+            }
+            commit.setReviewed(commitReview.getReviewed());
+            commit.setReviewComment(commitReview.getReviewComment());
+        });
     }
 
-    public void review(List<CommitReview> commitReviews) {
-        log.info("Doing review for {}", commitReviews.toString());
-        commitReviewRepository.saveAll(commitReviews);
+    public void review(List<Commit> commits) {
+        log.info("Doing review for {}", commits.toString());
+        commitReviewRepository.saveAll(commits);
     }
 }

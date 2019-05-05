@@ -17,8 +17,12 @@ export function getTimestampOfCommit(commit) {
   return +R.propOr(0, 'timestamp', commit);
 }
 
+export function findLatestCommitFromCommits(commits) {
+  return R.reduce(R.maxBy(getTimestampOfCommit), null, commits);
+}
+
 export function findLatestCommitInBranch(branch) {
-  return R.reduce(R.maxBy(getTimestampOfCommit), null, R.propOr([], 'commits', branch));
+  return findLatestCommitFromCommits(R.propOr([], 'commits', branch));
 }
 
 export function findLatestCommit(repo) {
@@ -79,3 +83,31 @@ export function updateCommitsInState(commits, state) {
 
   return updated;
 }
+
+export function sortRepos(repos) {
+  return repos.slice().sort((a, b) => {
+    const isAnyCommitUnreviewedA = isAnyCommitUnreviewed(a);
+    const isAnyCommitUnreviewedB = isAnyCommitUnreviewed(b);
+
+    if (isAnyCommitUnreviewedA && !isAnyCommitUnreviewedB) {
+      return -1;
+    }
+    if (!isAnyCommitUnreviewedA && isAnyCommitUnreviewedB) {
+      return 1;
+    }
+
+    const latestCommitA = findLatestCommit(a);
+    const latestCommitB = findLatestCommit(b);
+
+    return getTimestampOfCommit(latestCommitB) - getTimestampOfCommit(latestCommitA);
+  });
+};
+
+export function sortBranches(branches) {
+  return branches.slice().sort((a, b) => {
+    const latestA = findLatestCommitInBranch(a);
+    const latestB = findLatestCommitInBranch(b);
+
+    return getTimestampOfCommit(latestB) - getTimestampOfCommit(latestA);
+  });
+};

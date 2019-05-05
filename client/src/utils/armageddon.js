@@ -101,7 +101,7 @@ export function sortRepos(repos) {
 
     return getTimestampOfCommit(latestCommitB) - getTimestampOfCommit(latestCommitA);
   });
-};
+}
 
 export function sortBranches(branches) {
   return branches.slice().sort((a, b) => {
@@ -110,4 +110,4 @@ export function sortBranches(branches) {
 
     return getTimestampOfCommit(latestB) - getTimestampOfCommit(latestA);
   });
-};
+}

@@ -17,7 +17,7 @@ class BasicLayout extends PureComponent {
     const now = Date.now();
     const nowStr = timestampToStr(now);
     const prevStr = findCutoffStrFromTs(now);
-    
+
     return (
       <Layout className="layout">
         <Layout.Content style={{ padding: '48px' }}>
@@ -28,8 +28,9 @@ class BasicLayout extends PureComponent {
                 src={chaosStrikeIcon}
                 alt="Rampage"
                 className={
-                  armageddon.repos.some((r) => isAnyCommitUnreviewed(r)) ?
-                  styles.chaosStrikeIconHidden: styles.chaosStrikeIcon
+                  armageddon.repos.some((r) => isAnyCommitUnreviewed(r))
+                    ? styles.chaosStrikeIconHidden
+                    : styles.chaosStrikeIcon
                 }
               />
             </Typography.Title>

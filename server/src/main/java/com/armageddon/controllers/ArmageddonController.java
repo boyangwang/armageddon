@@ -4,11 +4,15 @@ import com.armageddon.ArmageddonServerApplication;
 import com.armageddon.configs.ArmageddonConfig;
 import com.armageddon.models.ArmageddonData;
 import com.armageddon.services.ArmageddonService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/v1/armageddon")
 public class ArmageddonController {
+    private Logger log = LoggerFactory.getLogger(this.getClass());
+
     private ArmageddonService armageddonService;
 
     public ArmageddonController(ArmageddonService armageddonService) {
@@ -31,7 +35,11 @@ public class ArmageddonController {
     }
 
     @PostMapping("/review")
-    public String doReview() {
+    public String doReview(@RequestBody ReviewRequestBody body) {
+        log.info("Doing reviews for repo {} length {}", body.reviewRepoName, body.reviewCommits.size());
+
+        armageddonService.review(body.reviewCommits);
+
         return "{\"status\": \"success\"}";
     }
 }

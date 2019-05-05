@@ -1,6 +1,7 @@
 package com.armageddon.connectors;
 
 import com.armageddon.configs.ArmageddonConfig;
+import com.armageddon.db.CommitReview;
 import com.armageddon.models.Remote;
 import com.armageddon.models.Repo;
 import org.gitlab4j.api.GitLabApi;
@@ -71,6 +72,7 @@ public class GitlabConnector {
             branchData.branchName = branch.getName();
             branchData.commits = getCommits(projectId, branch.getName(), cutoff)
                     .stream().map(this::commitToCommitData).collect(Collectors.toList());
+
             return branchData;
         }).collect(Collectors.toList());
         return repo;
@@ -83,9 +85,7 @@ public class GitlabConnector {
         commitData.hash = commit.getId();
         commitData.author = commit.getAuthorName() + ' ' + commit.getAuthorEmail();
         commitData.message = commit.getMessage();
-        //FIXME empty reviewComment for now
         commitData.reviewComment = "";
-        //FIXME reviewed false for now
         commitData.reviewed = false;
         commitData.timestamp = commit.getAuthoredDate().getTime();
 

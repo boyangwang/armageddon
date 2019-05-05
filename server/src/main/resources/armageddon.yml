@@ -27,50 +27,50 @@ armageddon:
         matrix-apps: 338
   repos:
     - name: hot-wallet-service
-      url: git@gitlab.intranet.huiyin.com:matrix/hot-wallet-service
+      url: git@gitlab.intranet.huiyin.com:matrix/hot-wallet-service.git
       type: GITLAB
     - name: matrix-armageddon
-      url: git@gitlab.intranet.huiyin.com:matrix/matrix-armageddon
+      url: git@gitlab.intranet.huiyin.com:matrix/matrix-armageddon.git
       type: GITLAB
     - name: matrix-huskar
-      url: git@gitlab.intranet.huiyin.com:matrix/matrix-huskar
+      url: git@gitlab.intranet.huiyin.com:matrix/matrix-huskar.git
       type: GITLAB
     - name: matrix-huskar-front
-      url: git@gitlab.intranet.huiyin.com:matrix/matrix-huskar-front
+      url: git@gitlab.intranet.huiyin.com:matrix/matrix-huskar-front.git
       type: GITLAB
     - name: matrix-wiki
-      url: git@gitlab.intranet.huiyin.com:matrix/matrix-wiki
+      url: git@gitlab.intranet.huiyin.com:matrix/matrix-wiki.git
       type: GITLAB
     - name: matrix-op
-      url: git@gitlab.intranet.huiyin.com:matrix/matrix-op
+      url: git@gitlab.intranet.huiyin.com:matrix/matrix-op.git
       type: GITLAB
     - name: matrix-ui-new
-      url: git@gitlab.intranet.huiyin.com:matrix/matrix-ui-new
+      url: git@gitlab.intranet.huiyin.com:matrix/matrix-ui-new.git
       type: GITLAB
     - name: matrix-manage-new
-      url: git@gitlab.intranet.huiyin.com:matrix/matrix-manage-new
+      url: git@gitlab.intranet.huiyin.com:matrix/matrix-manage-new.git
       type: GITLAB
     - name: matrix-shared
-      url: git@gitlab.intranet.huiyin.com:matrix/matrix-shared
+      url: git@gitlab.intranet.huiyin.com:matrix/matrix-shared.git
       type: GITLAB
     - name: matrix-release
-      url: git@gitlab.intranet.huiyin.com:matrix/matrix-release
+      url: git@gitlab.intranet.huiyin.com:matrix/matrix-release.git
       type: GITLAB
     - name: matrix-match
-      url: git@gitlab.intranet.huiyin.com:matrix/matrix-match
+      url: git@gitlab.intranet.huiyin.com:matrix/matrix-match.git
       type: GITLAB
     - name: matrix-hd-wallet
-      url: git@gitlab.intranet.huiyin.com:matrix/matrix-hd-wallet
+      url: git@gitlab.intranet.huiyin.com:matrix/matrix-hd-wallet.git
       type: GITLAB
     - name: matrix-exchange
-      url: git@gitlab.intranet.huiyin.com:matrix/matrix-exchange
+      url: git@gitlab.intranet.huiyin.com:matrix/matrix-exchange.git
       type: GITLAB
     - name: matrix-config-repo
-      url: git@gitlab.intranet.huiyin.com:matrix/matrix-config-repo
+      url: git@gitlab.intranet.huiyin.com:matrix/matrix-config-repo.git
       type: GITLAB
     - name: matrix-build
-      url: git@gitlab.intranet.huiyin.com:matrix/matrix-build
+      url: git@gitlab.intranet.huiyin.com:matrix/matrix-build.git
       type: GITLAB
     - name: matrix-apps
-      url: git@gitlab.intranet.huiyin.com:matrix/matrix-apps
+      url: git@gitlab.intranet.huiyin.com:matrix/matrix-apps.git
       type: GITLAB

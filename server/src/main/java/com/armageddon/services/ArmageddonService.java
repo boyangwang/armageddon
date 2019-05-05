@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ArmageddonService {
@@ -31,21 +32,26 @@ public class ArmageddonService {
         List<ArmageddonConfig.Repo> repoConfigs = armageddonConfig.getRepos();
         ArmageddonData data = new ArmageddonData();
 
-        for (ArmageddonConfig.Repo repoConfig: repoConfigs) {
-            GITHOSTING_TYPES type = repoConfig.getType();
-            switch(type) {
-                case GITLAB:
-                    Repo repo = gitlabConnector.getRepo(repoConfig, cutoff);
-                    addRepoToArmageddonData(repo, data);
-                    break;
-                default:
-                    log.warn("Type of repo doesn't match any known GITHOSTING_TYPES: " + type);
-            }
-        }
+        log.info("Starting getRepo for {} repos", repoConfigs.size());
+        data.data = repoConfigs.parallelStream().map(repoConfig -> getRepoFromRepoConfig(repoConfig, cutoff))
+                .collect(Collectors.toList());
+        log.info("Done getRepo, count={}", data.data.size());
+
         return data;
     }
 
-    public void addRepoToArmageddonData(Repo repo, ArmageddonData data) {
-        data.data.add(repo);
+    public Repo getRepoFromRepoConfig(ArmageddonConfig.Repo repoConfig, Long cutoff) {
+        GITHOSTING_TYPES type = repoConfig.getType();
+        Repo repo = new Repo();
+
+        switch (type) {
+            case GITLAB:
+                repo = gitlabConnector.getRepo(repoConfig, cutoff);
+                break;
+            default:
+                log.warn("Type of repo doesn't match any known GITHOSTING_TYPES: " + type);
+        }
+
+        return repo;
     }
 }

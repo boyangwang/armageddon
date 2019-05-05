@@ -4,9 +4,73 @@ armageddon:
       baseUrl: http://gitlab.intranet.huiyin.com
       privateToken: ${GITLAB_PRIVATE_TOKEN:xxxxxxxxxxxxxxxxxx-y}
       repoNameToRepoIdMap:
-        matrix-manage-new: 347
+        hot-wallet-service: 414
+
+        matrix-armageddon: 412
+
+        matrix-huskar: 410
+        matrix-huskar-front: 411
+
+        matrix-wiki: 407
+        matrix-op: 392
+
         matrix-ui-new: 348
+        matrix-manage-new: 347
+
+        matrix-shared: 345
+        matrix-release: 344
+        matrix-match: 343
+        matrix-hd-wallet: 342
+        matrix-exchange: 341
+        matrix-config-repo: 340
+        matrix-build: 339
+        matrix-apps: 338
   repos:
+    - name: hot-wallet-service
+      url: git@gitlab.intranet.huiyin.com:matrix/hot-wallet-service
+      type: GITLAB
+    - name: matrix-armageddon
+      url: git@gitlab.intranet.huiyin.com:matrix/matrix-armageddon
+      type: GITLAB
+    - name: matrix-huskar
+      url: git@gitlab.intranet.huiyin.com:matrix/matrix-huskar
+      type: GITLAB
+    - name: matrix-huskar-front
+      url: git@gitlab.intranet.huiyin.com:matrix/matrix-huskar-front
+      type: GITLAB
+    - name: matrix-wiki
+      url: git@gitlab.intranet.huiyin.com:matrix/matrix-wiki
+      type: GITLAB
+    - name: matrix-op
+      url: git@gitlab.intranet.huiyin.com:matrix/matrix-op
+      type: GITLAB
+    - name: matrix-ui-new
+      url: git@gitlab.intranet.huiyin.com:matrix/matrix-ui-new
+      type: GITLAB
     - name: matrix-manage-new
-      url: git@gitlab.intranet.huiyin.com:matrix/matrix-manage-new.git
-      type: gitlab
+      url: git@gitlab.intranet.huiyin.com:matrix/matrix-manage-new
+      type: GITLAB
+    - name: matrix-shared
+      url: git@gitlab.intranet.huiyin.com:matrix/matrix-shared
+      type: GITLAB
+    - name: matrix-release
+      url: git@gitlab.intranet.huiyin.com:matrix/matrix-release
+      type: GITLAB
+    - name: matrix-match
+      url: git@gitlab.intranet.huiyin.com:matrix/matrix-match
+      type: GITLAB
+    - name: matrix-hd-wallet
+      url: git@gitlab.intranet.huiyin.com:matrix/matrix-hd-wallet
+      type: GITLAB
+    - name: matrix-exchange
+      url: git@gitlab.intranet.huiyin.com:matrix/matrix-exchange
+      type: GITLAB
+    - name: matrix-config-repo
+      url: git@gitlab.intranet.huiyin.com:matrix/matrix-config-repo
+      type: GITLAB
+    - name: matrix-build
+      url: git@gitlab.intranet.huiyin.com:matrix/matrix-build
+      type: GITLAB
+    - name: matrix-apps
+      url: git@gitlab.intranet.huiyin.com:matrix/matrix-apps
+      type: GITLAB

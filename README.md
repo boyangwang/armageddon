@@ -1,12 +1,18 @@
 # Armageddon
 
+A code review tool
+
+> Bestride Armageddon, I ride down my enemies
+
+> I'll set you bouncing on Armageddon's flank!
+
 ## armageddon-client
 
 Display repos in tabs
 
 Branches as cards
 
-Commits as list items and paginated
+Commits as list items
 
 ## armageddon-server
 

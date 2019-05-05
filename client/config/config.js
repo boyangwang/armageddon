@@ -57,7 +57,8 @@ export default {
   routes: pageRoutes,
   proxy: {
     '/v1': {
-      target: 'https://yapi.matrix.co/mock/96',
+      // target: 'https://yapi.matrix.co/mock/96',
+      target: 'http://localhost:7458',
       changeOrigin: true,
     },
   },

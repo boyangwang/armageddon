@@ -66,7 +66,7 @@ public class GitlabConnector {
             branches = Collections.emptyList();
         }
 
-        repo.branches = branches.stream().map(branch -> {
+        repo.branches = branches.parallelStream().map(branch -> {
             com.armageddon.models.Branch branchData = new com.armageddon.models.Branch();
             branchData.branchName = branch.getName();
             branchData.commits = getCommits(projectId, branch.getName(), cutoff)
@@ -78,14 +78,17 @@ public class GitlabConnector {
 
     private com.armageddon.models.Commit commitToCommitData(Commit commit) {
         com.armageddon.models.Commit commitData = new com.armageddon.models.Commit();
+
+        log.info("Processing commit {}", commit);
         commitData.hash = commit.getId();
-        commitData.author = commit.getAuthor().toString();
+        commitData.author = commit.getAuthorName() + ' ' + commit.getAuthorEmail();
         commitData.message = commit.getMessage();
         //FIXME empty reviewComment for now
         commitData.reviewComment = "";
         //FIXME reviewed false for now
         commitData.reviewed = false;
-        commitData.timestamp = commit.getTimestamp().getTime();
+        commitData.timestamp = commit.getAuthoredDate().getTime();
+
         return commitData;
     }
 }

@@ -11,7 +11,7 @@ class Repo extends PureComponent {
   render() {
     const { repo } = this.props;
     const branches = R.propOr([], 'branches', repo);
-    
+
     return (
       <Fragment>
         {sortBranches(branches).map((b) => (

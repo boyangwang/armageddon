@@ -7,9 +7,9 @@ spring:
   profiles:
     active: default
   datasource:
-    url: jdbc:mysql://localhost:3306/armageddon?createDatabaseIfNotExist=true&setUnicode=true&characterEncoding=utf8
-    username: sa
-    password: 7Irph9TjV0pFyaJ5
+    url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/armageddon?createDatabaseIfNotExist=true&setUnicode=true&characterEncoding=utf8
+    username: ${MYSQL_USERNAME:username}
+    password: ${MYSQL_PASSWORD:password}
   jpa:
     hibernate:
       ddl-auto: update

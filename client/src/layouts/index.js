@@ -24,8 +24,14 @@ class BasicLayout extends PureComponent {
           <PageHeaderWrapper>
             <Typography.Title level={1} className={styles.pageTitle}>
               Armageddon
-              {armageddon.repos.some((r) => isAnyCommitUnreviewed(r)) ? null :
-              <img src={chaosStrikeIcon} alt="Rampage" className={styles.chaosStrikeIcon} />}
+              <img
+                src={chaosStrikeIcon}
+                alt="Rampage"
+                className={
+                  armageddon.repos.some((r) => isAnyCommitUnreviewed(r)) ?
+                  styles.chaosStrikeIconHidden: styles.chaosStrikeIcon
+                }
+              />
             </Typography.Title>
             <Typography.Paragraph>
               Showing list of commits from now <Typography.Text code>{nowStr}</Typography.Text> back

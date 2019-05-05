@@ -4,5 +4,5 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface CommitReviewRepository extends CrudRepository<Commit, String> {
+public interface CommitRepository extends CrudRepository<Commit, String> {
 }

@@ -2,6 +2,7 @@ package com.armageddon.connectors;
 
 import com.armageddon.configs.ArmageddonConfig;
 import com.armageddon.db.Commit;
+import com.armageddon.db.CommitRepository;
 import com.armageddon.models.Remote;
 import com.armageddon.models.Repo;
 import org.gitlab4j.api.GitLabApi;
@@ -22,9 +23,12 @@ public class GitlabConnector {
 
     private GitLabApi gitlabApi;
     private ArmageddonConfig armageddonConfig;
+    private CommitRepository commitRepository;
 
-    public GitlabConnector(ArmageddonConfig armageddonConfig) {
+    public GitlabConnector(ArmageddonConfig armageddonConfig, CommitRepository commitRepository) {
         this.armageddonConfig = armageddonConfig;
+        this.commitRepository = commitRepository;
+
         ArmageddonConfig.Githosting.Gitlab gitlab = armageddonConfig.getGithosting().getGitlab();
         log.info("Instantiating gitlabApi using baseUrl: {} and private token: {}",
                 gitlab.getBaseUrl(), gitlab.getPrivateToken());
@@ -88,6 +92,7 @@ public class GitlabConnector {
         commitData.setReviewed(false);
         commitData.setTimestamp(commit.getAuthoredDate().getTime());
 
+        log.info("Transformed to commit data {}", commitData);
         return commitData;
     }
 }

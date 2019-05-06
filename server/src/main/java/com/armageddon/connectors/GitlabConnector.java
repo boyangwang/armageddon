@@ -1,13 +1,13 @@
 package com.armageddon.connectors;
 
 import com.armageddon.configs.ArmageddonConfig;
-import com.armageddon.db.CommitReview;
+import com.armageddon.db.Commit;
+import com.armageddon.db.CommitRepository;
 import com.armageddon.models.Remote;
 import com.armageddon.models.Repo;
 import org.gitlab4j.api.GitLabApi;
 import org.gitlab4j.api.GitLabApiException;
 import org.gitlab4j.api.models.Branch;
-import org.gitlab4j.api.models.Commit;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -23,9 +23,12 @@ public class GitlabConnector {
 
     private GitLabApi gitlabApi;
     private ArmageddonConfig armageddonConfig;
+    private CommitRepository commitRepository;
 
-    public GitlabConnector(ArmageddonConfig armageddonConfig) {
+    public GitlabConnector(ArmageddonConfig armageddonConfig, CommitRepository commitRepository) {
         this.armageddonConfig = armageddonConfig;
+        this.commitRepository = commitRepository;
+
         ArmageddonConfig.Githosting.Gitlab gitlab = armageddonConfig.getGithosting().getGitlab();
         log.info("Instantiating gitlabApi using baseUrl: {} and private token: {}",
                 gitlab.getBaseUrl(), gitlab.getPrivateToken());
@@ -38,7 +41,7 @@ public class GitlabConnector {
         return gitlabApi.getRepositoryApi().getBranches(projectId);
     }
 
-    public List<Commit> getCommits(Integer projectId, String branch, Long cutoff) {
+    public List<org.gitlab4j.api.models.Commit> getCommits(Integer projectId, String branch, Long cutoff) {
         Date since = new Date(cutoff);
         Date until = new Date();
         try {
@@ -78,17 +81,18 @@ public class GitlabConnector {
         return repo;
     }
 
-    private com.armageddon.models.Commit commitToCommitData(Commit commit) {
-        com.armageddon.models.Commit commitData = new com.armageddon.models.Commit();
+    private Commit commitToCommitData(org.gitlab4j.api.models.Commit commit) {
+        Commit commitData = new Commit();
 
         log.info("Processing commit {}", commit);
-        commitData.hash = commit.getId();
-        commitData.author = commit.getAuthorName() + ' ' + commit.getAuthorEmail();
-        commitData.message = commit.getMessage();
-        commitData.reviewComment = "";
-        commitData.reviewed = false;
-        commitData.timestamp = commit.getAuthoredDate().getTime();
+        commitData.setHash(commit.getId());
+        commitData.setAuthor(commit.getAuthorName() + ' ' + commit.getAuthorEmail());
+        commitData.setMessage(commit.getMessage());
+        commitData.setReviewComment("");
+        commitData.setReviewed(false);
+        commitData.setTimestamp(commit.getAuthoredDate().getTime());
 
+        log.info("Transformed to commit data {}", commitData);
         return commitData;
     }
 }

@@ -11,8 +11,12 @@ spring:
     username: ${ARM_MYSQL_USERNAME:username}
     password: ${ARM_MYSQL_PASSWORD:password}
   jpa:
+    database-platform: org.hibernate.dialect.MySQLInnoDBDialect
     hibernate:
       ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLInnoDBDialect
 
 management:
   endpoints:

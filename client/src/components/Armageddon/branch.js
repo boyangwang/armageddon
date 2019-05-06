@@ -53,17 +53,21 @@ class Branch extends PureComponent {
     {
       title: 'Author',
       dataIndex: 'author',
-    },
-    {
-      title: 'Message',
-      dataIndex: 'message',
+      width: 180,
     },
     {
       title: 'Time',
       dataIndex: 'timestamp',
-      align: 'right',
       width: 160,
       render: (ts) => u.timestampToStr(ts),
+    },
+    // {
+    //   title: 'Comment',
+    //   dataIndex: 'reviewComment',
+    // },
+    {
+      title: 'Message',
+      dataIndex: 'message',
     },
     {
       title: 'Reviewed',

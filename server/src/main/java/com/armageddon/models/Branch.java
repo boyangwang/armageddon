@@ -1,5 +1,7 @@
 package com.armageddon.models;
 
+import com.armageddon.db.Commit;
+
 import java.util.ArrayList;
 import java.util.List;
 

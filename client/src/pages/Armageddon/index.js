@@ -6,7 +6,7 @@ import * as u from '@/utils/utils';
 import TabPaneLabel from './TabPaneLabel';
 
 import styles from './index.less';
-import { findCutoffMomentFromTs } from '@/utils/armageddon';
+import { findCutoffMomentFromTs, sortRepos } from '@/utils/armageddon';
 
 @connect(({ loading, armageddon }) => ({
   loading: loading.effects['armageddon/fetch'],
@@ -32,7 +32,7 @@ class Armageddon extends Component {
     return (
       <Card className={styles.armageddon} loading={loading}>
         <Tabs>
-          {armageddon.repos.map((repo) => (
+          {sortRepos(armageddon.repos).map((repo) => (
             <TabPane repo={repo} key={repo.repoName} tab={<TabPaneLabel repo={repo} />} />
           ))}
         </Tabs>

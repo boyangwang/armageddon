@@ -8,4 +8,3 @@ public class ArmageddonData {
 
     public List<Repo> data = new ArrayList<>();
 }
-

@@ -34,6 +34,12 @@ class Branch extends PureComponent {
     });
   };
 
+  reviewAll = async () => {
+    const { branch } = this.props;
+
+    await this.onReviewedChange(branch.commits.filter((c) => !c.reviewed));
+  }
+
   onReviewedChangeForSelectedRows = async (selectedRows) => {
     const { branch } = this.props;
 
@@ -113,6 +119,15 @@ class Branch extends PureComponent {
               <Icon type="stop" />
               &nbsp;Clear&nbsp;<Typography.Text strong>{selectedRows.length}</Typography.Text>
               &nbsp;Selected Rows
+            </Button>
+          </Col>
+          <Col>
+            <Button
+              type="primary"
+              onClick={() => this.reviewAll()}
+              icon="check"
+            >
+              Review All
             </Button>
           </Col>
         </Row>

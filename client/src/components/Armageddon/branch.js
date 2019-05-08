@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { Typography, Card, Col, Button, Checkbox, Icon, Row } from 'antd';
+import { Typography, Card, Col, Button, Checkbox, Icon, Row, Switch } from 'antd';
 import StandardTable from '@/components/StandardTable';
 import * as u from '@/utils/utils';
 import { connect } from 'dva';
@@ -12,6 +12,7 @@ import { getCommitLink } from '@/utils/armageddon';
 class Branch extends PureComponent {
   state = {
     selectedRows: [],
+    isHidingReviewed: true,
   };
 
   onReviewedChange = async (commits) => {
@@ -86,6 +87,12 @@ class Branch extends PureComponent {
     },
   ];
 
+  onHideReviewedSwitchChanged = (val) => {
+    this.setState({
+      isHidingReviewed: val
+    });
+  };
+
   handleSelectRows = (rows) => {
     this.setState({
       selectedRows: rows.map((c) => c.hash),
@@ -94,8 +101,11 @@ class Branch extends PureComponent {
 
   render() {
     const { repo, branch } = this.props;
-    const { selectedRows } = this.state;
+    const { selectedRows, isHidingReviewed } = this.state;
 
+    const list = R.propOr([], 'commits', branch);
+    const filteredList = !isHidingReviewed ? list : list.filter((c) => c.reviewed === false);
+    
     return (
       <Card bordered={false}>
         <Row type="flex" gutter={24} justify="start" align="middle" style={{ lineHeight: '48px' }}>
@@ -103,6 +113,11 @@ class Branch extends PureComponent {
             <Typography.Title level={4} style={{ marginBottom: 0 }}>
               Branch: {branch.branchName}
             </Typography.Title>
+          </Col>
+          <Col>
+            <Button type="primary" onClick={() => this.reviewAll()} icon="check">
+              Review All
+            </Button>
           </Col>
           <Col>
             <Button
@@ -122,14 +137,17 @@ class Branch extends PureComponent {
             </Button>
           </Col>
           <Col>
-            <Button type="primary" onClick={() => this.reviewAll()} icon="check">
-              Review All
-            </Button>
+            <Switch
+              checkedChildren="Hiding reviewed"
+              unCheckedChildren="Showing all"
+              defaultChecked
+              onChange={this.onHideReviewedSwitchChanged}
+            />
           </Col>
         </Row>
         <StandardTable
           selectedRows={selectedRows}
-          data={{ list: R.propOr([], 'commits', branch), pagination: false }}
+          data={{ list: filteredList, pagination: false }}
           columns={this.columns(repo)}
           onSelectRow={this.handleSelectRows}
           rowKey="hash"

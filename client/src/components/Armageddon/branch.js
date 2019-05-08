@@ -89,7 +89,7 @@ class Branch extends PureComponent {
 
   onHideReviewedSwitchChanged = (val) => {
     this.setState({
-      isHidingReviewed: val
+      isHidingReviewed: val,
     });
   };
 
@@ -105,7 +105,7 @@ class Branch extends PureComponent {
 
     const list = R.propOr([], 'commits', branch);
     const filteredList = !isHidingReviewed ? list : list.filter((c) => c.reviewed === false);
-    
+
     return (
       <Card bordered={false}>
         <Row type="flex" gutter={24} justify="start" align="middle" style={{ lineHeight: '48px' }}>

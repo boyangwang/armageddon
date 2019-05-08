@@ -109,9 +109,11 @@ class Branch extends PureComponent {
       }
       event.preventDefault();
       event.stopPropagation();
-      event.currentTarget.querySelector('.ant-table-selection-column .ant-checkbox-wrapper').click();
-    } catch(e) {
-      u.log("Error handlerowclick", e);
+      event.currentTarget
+        .querySelector('.ant-table-selection-column .ant-checkbox-wrapper')
+        .click();
+    } catch (e) {
+      u.log('Error handlerowclick', e);
     }
   };
 
@@ -169,7 +171,7 @@ class Branch extends PureComponent {
           rowKey="hash"
           onRow={(record) => {
             return {
-              onClick: this.handleRowClick(record)
+              onClick: this.handleRowClick(record),
             };
           }}
         />

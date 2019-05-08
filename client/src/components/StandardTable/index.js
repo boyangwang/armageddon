@@ -68,7 +68,7 @@ class StandardTable extends PureComponent {
       loading,
       columns,
       rowKey,
-      onRow
+      onRow,
     } = this.props;
 
     const rowSelection = {

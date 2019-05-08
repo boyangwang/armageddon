@@ -58,11 +58,13 @@ class Branch extends PureComponent {
       width: 120,
     },
     {
+      className: 'toggle-select',
       title: 'Author',
       dataIndex: 'author',
       width: 180,
     },
     {
+      className: 'toggle-select',
       title: 'Time',
       dataIndex: 'timestamp',
       width: 160,
@@ -73,6 +75,7 @@ class Branch extends PureComponent {
     //   dataIndex: 'reviewComment',
     // },
     {
+      className: 'toggle-select',
       title: 'Message',
       dataIndex: 'message',
     },
@@ -97,6 +100,19 @@ class Branch extends PureComponent {
     this.setState({
       selectedRows: rows.map((c) => c.hash),
     });
+  };
+
+  handleRowClick = () => (event) => {
+    try {
+      if (!event.target.matches('.toggle-select')) {
+        return;
+      }
+      event.preventDefault();
+      event.stopPropagation();
+      event.currentTarget.querySelector('.ant-table-selection-column .ant-checkbox-wrapper').click();
+    } catch(e) {
+      u.log("Error handlerowclick", e);
+    }
   };
 
   render() {
@@ -151,6 +167,11 @@ class Branch extends PureComponent {
           columns={this.columns(repo)}
           onSelectRow={this.handleSelectRows}
           rowKey="hash"
+          onRow={(record) => {
+            return {
+              onClick: this.handleRowClick(record)
+            };
+          }}
         />
       </Card>
     );

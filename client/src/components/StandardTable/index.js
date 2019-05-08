@@ -68,6 +68,7 @@ class StandardTable extends PureComponent {
       loading,
       columns,
       rowKey,
+      onRow
     } = this.props;
 
     const rowSelection = {
@@ -88,6 +89,7 @@ class StandardTable extends PureComponent {
           columns={columns}
           pagination={pagination}
           onChange={this.handleTableChange}
+          onRow={onRow}
         />
       </div>
     );

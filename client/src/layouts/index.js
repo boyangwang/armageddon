@@ -3,8 +3,7 @@ import React, { PureComponent } from 'react';
 import { connect } from 'dva';
 import styles from './index.less';
 import PageHeaderWrapper from '@/components/PageHeaderWrapper';
-import { timestampToStr } from '@/utils/utils';
-import { findCutoffStrFromTs, isAnyCommitUnreviewed } from '@/utils/armageddon';
+import { isAnyCommitUnreviewed } from '@/utils/armageddon';
 import chaosStrikeIcon from '@/assets/Chaos-Strike-icon.png';
 
 @connect(({ loading, armageddon }) => ({
@@ -14,9 +13,6 @@ import chaosStrikeIcon from '@/assets/Chaos-Strike-icon.png';
 class BasicLayout extends PureComponent {
   render() {
     const { children, armageddon } = this.props;
-    const now = Date.now();
-    const nowStr = timestampToStr(now);
-    const prevStr = findCutoffStrFromTs(now);
 
     return (
       <Layout className="layout">
@@ -34,11 +30,6 @@ class BasicLayout extends PureComponent {
                 }
               />
             </Typography.Title>
-            <Typography.Paragraph>
-              Showing list of commits from now <Typography.Text code>{nowStr}</Typography.Text> back
-              to <Typography.Text code>{prevStr}</Typography.Text>
-            </Typography.Paragraph>
-            <Typography.Paragraph>Cutoff at 08:00 +800 time, 00:00 UTC time</Typography.Paragraph>
           </PageHeaderWrapper>
           {children}
         </Layout.Content>

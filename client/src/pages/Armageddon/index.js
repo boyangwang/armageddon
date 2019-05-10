@@ -13,7 +13,6 @@ import { timestampToStr, log } from '@/utils/utils';
   armageddon,
 }))
 class Armageddon extends Component {
-
   constructor(props) {
     super(props);
     log('In armageddon constructor');
@@ -50,7 +49,7 @@ class Armageddon extends Component {
         payload: cutoff,
       });
     }
-  }
+  };
 
   render() {
     const { loading, armageddon } = this.props;
@@ -61,12 +60,17 @@ class Armageddon extends Component {
     return (
       <Fragment>
         <Typography.Paragraph>
-          Showing list of commits from now <Typography.Text code>{nowStr}</Typography.Text> back
-          to <Typography.Text code>{prevStr}</Typography.Text>
+          Showing list of commits from now <Typography.Text code>{nowStr}</Typography.Text> back to{' '}
+          <Typography.Text code>{prevStr}</Typography.Text>
         </Typography.Paragraph>
         <Typography.Paragraph>
           Cutoff at 08:00 +800 time, 00:00 UTC time
-          <DatePicker className={styles.datepicker} defaultValue={cutoff} format="YYYY-MMM-DD" onChange={this.onDatePickerChange} />
+          <DatePicker
+            className={styles.datepicker}
+            defaultValue={cutoff}
+            format="YYYY-MMM-DD"
+            onChange={this.onDatePickerChange}
+          />
         </Typography.Paragraph>
         <Card className={styles.armageddon} loading={loading}>
           <Tabs>

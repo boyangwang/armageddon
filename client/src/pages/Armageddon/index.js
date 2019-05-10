@@ -1,7 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'dva';
 import { Card, Tabs, Typography, DatePicker } from 'antd';
-import * as moment from 'moment';
 import TabPane from './TabPane';
 import TabPaneLabel from './TabPaneLabel';
 

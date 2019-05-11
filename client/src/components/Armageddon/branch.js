@@ -53,7 +53,7 @@ class Branch extends PureComponent {
     {
       title: 'Commit',
       render: (commit) => {
-        return <a href={getCommitLink(repo, commit)}>{commit.hash.substring(0, 8)}</a>;
+        return <a target="_blank" rel="noreferrer noopener" href={getCommitLink(repo, commit)}>{commit.hash.substring(0, 8)}</a>;
       },
       width: 120,
     },
